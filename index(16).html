@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thomas Verdier — Chief Sales Officer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:   #0B1C35;
+    --navy2:  #122244;
+    --gold:   #C4993A;
+    --gold-l: #E8C97A;
+    --cream:  #F5F0E8;
+    --white:  #FFFFFF;
+    --gray:   #8A94A6;
+    --light:  #EEF1F7;
+    --text:   #1C2B3A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── ANIMATED GRADIENT BG ── */
+  .bg-gradient {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 20%, rgba(196,153,58,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 90% 80%, rgba(18,34,68,0.9) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: bgPulse 12s ease-in-out infinite alternate;
+  }
+  @keyframes bgPulse {
+    from { opacity: 1; }
+    to   { opacity: 0.7; }
+  }
+
+  /* ── GLOBAL WRAPPER ── */
+  .wrapper { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── FADE-IN ANIMATIONS ── */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(11,28,53,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,153,58,0.15);
+  }
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--gold-l);
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+  .hero-inner { display: grid; grid-template-columns: 1fr 380px; gap: 80px; align-items: center; }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 6vw, 5.2rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold-l);
+  }
+
+  .hero-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    margin-top: 4px;
+  }
+
+  .hero-pitch {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.75);
+    max-width: 520px;
+    margin-bottom: 40px;
+  }
+  .hero-pitch strong { color: var(--cream); font-weight: 500; }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-l); transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 28px;
+    background: transparent;
+    color: var(--cream);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(245,240,232,0.25);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Hero card */
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(196,153,58,0.2);
+    padding: 40px 32px;
+    position: relative;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 60px;
+    background: var(--gold);
+  }
+  .hero-card-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .contact-item span:first-child {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 4px;
+  }
+  .contact-item span:last-child, .contact-item a {
+    font-size: 0.88rem;
+    color: var(--cream);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-item a:hover { color: var(--gold); }
+  .divider-h { height: 1px; background: rgba(196,153,58,0.15); margin: 24px 0; }
+  .permit-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px solid rgba(196,153,58,0.3);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 100px 0; }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(196,153,58,0.2);
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 48px;
+  }
+
+  /* ── METRICS ── */
+  .metrics { background: rgba(255,255,255,0.02); border-top: 1px solid rgba(196,153,58,0.12); border-bottom: 1px solid rgba(196,153,58,0.12); }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .metric {
+    padding: 52px 40px;
+    border-right: 1px solid rgba(196,153,58,0.1);
+    text-align: center;
+  }
+  .metric:last-child { border-right: none; }
+  .metric-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.4rem;
+    font-weight: 300;
+    color: var(--gold-l);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .metric-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* ── VALUE CASES ── */
+  .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .case-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(196,153,58,0.1);
+    padding: 36px 28px;
+    position: relative;
+    transition: background 0.3s, border-color 0.3s;
+    cursor: default;
+  }
+  .case-card:hover {
+    background: rgba(196,153,58,0.06);
+    border-color: rgba(196,153,58,0.3);
+  }
+  .case-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+  }
+  .case-company {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .case-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .case-body {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .case-result {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(196,153,58,0.1);
+    border: 1px solid rgba(196,153,58,0.25);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-l);
+    font-weight: 500;
+  }
+
+  /* ── COMPETENCIES ── */
+  .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .comp-group-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(196,153,58,0.2);
+  }
+  .comp-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .comp-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+  .comp-text { font-size: 0.87rem; color: rgba(245,240,232,0.8); }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), rgba(196,153,58,0.1));
+  }
+  .tl-item {
+    padding: 0 0 48px 40px;
+    position: relative;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(196,153,58,0.15);
+  }
+  .tl-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .tl-company {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .tl-role {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+  .tl-body {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.75;
+    max-width: 580px;
+  }
+  .tl-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .tag {
+    padding: 3px 10px;
+    border: 1px solid rgba(196,153,58,0.2);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--gray);
+  }
+
+  /* ── REFERENCES ── */
+  .ref-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .ref-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(196,153,58,0.1);
+    padding: 32px 28px;
+    position: relative;
+  }
+  .ref-card::before {
+    content: '\201C';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.25;
+    position: absolute;
+    top: 8px; left: 20px;
+    line-height: 1;
+  }
+  .ref-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(245,240,232,0.85);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    padding-top: 16px;
+  }
+  .ref-name {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 0.06em;
+  }
+  .ref-title {
+    font-size: 0.7rem;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    text-align: center;
+    padding: 120px 0;
+    position: relative;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(196,153,58,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta h2 { font-size: clamp(2.4rem, 5vw, 3.8rem); margin-bottom: 20px; }
+  .final-cta p { font-size: 1rem; color: rgba(245,240,232,0.6); max-width: 440px; margin: 0 auto 40px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(196,153,58,0.12);
+    padding: 28px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    .metrics-grid, .cases-grid, .comp-grid, .ref-grid { grid-template-columns: 1fr; }
+    .metric { border-right: none; border-bottom: 1px solid rgba(196,153,58,0.1); }
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Thomas Verdier</div>
+  <div class="nav-links">
+    <a href="#value">Value</a>
+    <a href="#experience">Experience</a>
+    <a href="#references">References</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrapper">
+    <div class="hero-inner">
+      <div class="fade-up">
+        <div class="hero-eyebrow">Chief Sales Officer</div>
+        <h1>Thomas<br/><em>Verdier</em></h1>
+        <div class="hero-title">B2B Enterprise · ERP & Digital Transformation · Market Creation</div>
+        <p class="hero-pitch">
+          I build revenue engines from scratch.<br/>
+          <strong>43 M CHF pipelines. €60 M portfolios. Markets opened across 9 countries.</strong><br/>
+          17 years closing long-cycle enterprise deals at C-suite level — in ERP, Data & AI transformation environments.
+          I'm ready to lead your global sales function and deliver measurable growth from day one.
+        </p>
+        <div class="cta-row">
+          <a href="mailto:verdier.thomas@gmail.com" class="btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+            Schedule a conversation
+          </a>
+          <a href="Thomas_Verdier_CSO.docx" class="btn-ghost" download>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download full CV
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card fade-up" style="transition-delay:0.2s">
+        <div class="hero-card-label">Direct Contact</div>
+        <div class="contact-item">
+          <span>Phone</span>
+          <a href="tel:+41796934524">+41 79 693 45 24</a>
+        </div>
+        <div class="contact-item">
+          <span>Email</span>
+          <a href="mailto:verdier.thomas@gmail.com">verdier.thomas@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span>LinkedIn</span>
+          <a href="https://linkedin.com/in/verdierthomas" target="_blank">linkedin.com/in/verdierthomas</a>
+        </div>
+        <div class="contact-item">
+          <span>Location</span>
+          <span>St-Légier, Switzerland</span>
+        </div>
+        <div class="divider-h"></div>
+        <div class="permit-tag">Swiss C Permit · French National</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics" id="value">
+  <div class="wrapper">
+    <div class="metrics-grid">
+      <div class="metric fade-up">
+        <div class="metric-value">43 M<span style="font-size:1.8rem"> CHF</span></div>
+        <div class="metric-label">Pipeline Structured<br/>in 12 Months · 4 Closings</div>
+      </div>
+      <div class="metric fade-up" style="transition-delay:0.15s">
+        <div class="metric-value">+33%</div>
+        <div class="metric-label">Portfolio Growth<br/>€14 M New Revenue · €60 M Base</div>
+      </div>
+      <div class="metric fade-up" style="transition-delay:0.3s">
+        <div class="metric-value">×10</div>
+        <div class="metric-label">Revenue Growth<br/>Global Markets · 70+ Countries</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PITCH SECTION -->
+<section id="pitch" style="padding: 100px 0; background: rgba(0,0,0,0.2);">
+  <div class="wrapper">
+    <div class="section-label fade-up">60-Second Pitch</div>
+    <h2 class="fade-up">Revenue in the Age of<br/><em>Permanent Disruption.</em></h2>
+
+    <!-- PITCH PLAYER -->
+    <div class="pitch-container fade-up" style="transition-delay:0.2s">
+      <audio id="pitchAudio" src="thomas-verdier-pitch.mp3" preload="auto"></audio>
+
+      <!-- ACT DISPLAY -->
+      <div class="pitch-stage">
+        <div class="pitch-act active" data-act="0">
+          <div class="act-number">01 / 05</div>
+          <div class="act-text">
+            <span class="word">We have all lived through it.</span>
+            <span class="word">Lockdowns. Inflation. AI reshaping every industry.</span>
+            <span class="word">Markets rewriting their own rules — overnight.</span>
+            <span class="word">How do you keep growing<br/>when everything shifts?</span>
+          </div>
+        </div>
+        <div class="pitch-act" data-act="1">
+          <div class="act-number">02 / 05</div>
+          <div class="act-text">
+            <span class="word">There's no guru trick.</span>
+            <span class="word">No magic framework.</span>
+            <span class="word">Just a clear strategy —</span>
+            <span class="word">and a company that puts its customers<br/>at the center of everything.</span>
+          </div>
+        </div>
+        <div class="pitch-act" data-act="2">
+          <div class="act-number">03 / 05</div>
+          <div class="act-text">
+            <span class="word">Revenue comes from a lead generation program<br/>that creates real opportunities.</span>
+            <span class="word">A pipeline that is robust, reliable — and alive.</span>
+            <span class="word">Energized by a Sales & Marketing team<br/>that believes in what they sell.</span>
+            <span class="word">Supported by every person<br/>who delivers on the promise.</span>
+          </div>
+        </div>
+        <div class="pitch-act" data-act="3">
+          <div class="act-number">04 / 05</div>
+          <div class="act-text">
+            <span class="word">If you seek a CSO<br/>who builds markets from scratch.</span>
+            <span class="word">If you seek a leader<br/>who coaches teams to sell with conviction.</span>
+            <span class="word">If you seek someone who defends<br/>the revenue plan at board level — and delivers it.</span>
+            <span class="word">If you seek the person<br/>who stays when markets get hard —</span>
+          </div>
+        </div>
+        <div class="pitch-act" data-act="4">
+          <div class="act-number">05 / 05</div>
+          <div class="act-text final-act">
+            <span class="word final-word">Let's build it<br/><em>together.</em></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROGRESS BAR -->
+      <div class="pitch-progress-wrap">
+        <div class="pitch-progress-bar" id="pitchProgress"></div>
+      </div>
+
+      <!-- ACT DOTS -->
+      <div class="pitch-dots">
+        <span class="pdot active" data-dot="0"></span>
+        <span class="pdot" data-dot="1"></span>
+        <span class="pdot" data-dot="2"></span>
+        <span class="pdot" data-dot="3"></span>
+        <span class="pdot" data-dot="4"></span>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="pitch-controls">
+        <button class="pitch-play-btn" id="pitchPlayBtn" onclick="togglePitch()">
+          <svg id="playIcon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          <svg id="pauseIcon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          <span id="pitchBtnLabel">Play the Pitch</span>
+        </button>
+        <div class="pitch-timer" id="pitchTimer">0:00 / 1:00</div>
+      </div>
+
+      <!-- MANUAL NAV -->
+      <div class="pitch-nav">
+        <button onclick="prevAct()" class="nav-btn">← Prev</button>
+        <button onclick="nextAct()" class="nav-btn">Next →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .pitch-container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(196,153,58,0.2);
+    padding: 56px 48px 40px;
+    position: relative;
+  }
+  .pitch-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+  .pitch-stage {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .pitch-act {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    animation: actIn 0.6s ease forwards;
+  }
+  .pitch-act.active { display: flex; }
+  @keyframes actIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .act-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    margin-bottom: 8px;
+  }
+  .act-text {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .word {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.3;
+    opacity: 0;
+    animation: wordIn 0.5s ease forwards;
+  }
+  .word:nth-child(1) { animation-delay: 0.1s; }
+  .word:nth-child(2) { animation-delay: 0.4s; }
+  .word:nth-child(3) { animation-delay: 0.7s; }
+  .word:nth-child(4) { animation-delay: 1.0s; }
+  @keyframes wordIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .final-act { align-items: center; text-align: center; }
+  .final-word {
+    font-size: clamp(2rem, 4vw, 3rem) !important;
+    color: var(--gold-l) !important;
+    animation-delay: 0.2s !important;
+  }
+  .final-word em { color: var(--white); font-style: italic; }
+
+  /* Progress */
+  .pitch-progress-wrap {
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 24px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .pitch-progress-bar {
+    height: 100%;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.5s linear;
+  }
+
+  /* Dots */
+  .pitch-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .pdot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(196,153,58,0.25);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .pdot.active {
+    background: var(--gold);
+    transform: scale(1.4);
+  }
+
+  /* Controls */
+  .pitch-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+  .pitch-play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 32px;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .pitch-play-btn:hover { background: var(--gold-l); transform: translateY(-2px); }
+  .pitch-timer {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+  }
+
+  /* Nav */
+  .pitch-nav {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  .nav-btn {
+    background: transparent;
+    border: 1px solid rgba(196,153,58,0.2);
+    color: var(--gray);
+    padding: 7px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .nav-btn:hover { border-color: var(--gold); color: var(--gold); }
+</style>
+
+<script>
+  // Act timing in seconds (mapped to 60s audio)
+  const actTimes = [0, 12, 24, 38, 52];
+  let currentAct = 0;
+  let isPlaying = false;
+  const audio = document.getElementById('pitchAudio');
+  const progressBar = document.getElementById('pitchProgress');
+  const timerEl = document.getElementById('pitchTimer');
+  const playIcon = document.getElementById('playIcon');
+  const pauseIcon = document.getElementById('pauseIcon');
+  const btnLabel = document.getElementById('pitchBtnLabel');
+
+  function togglePitch() {
+    if (isPlaying) {
+      audio.pause();
+      isPlaying = false;
+      playIcon.style.display = '';
+      pauseIcon.style.display = 'none';
+      btnLabel.textContent = 'Resume';
+    } else {
+      audio.play().catch(() => {
+        // No audio file yet — still animate manually
+        simulatePitch();
+      });
+      isPlaying = true;
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = '';
+      btnLabel.textContent = 'Pause';
+    }
+  }
+
+  // Sync animation with audio
+  audio.addEventListener('timeupdate', () => {
+    const t = audio.currentTime;
+    const dur = audio.duration || 60;
+    progressBar.style.width = (t / dur * 100) + '%';
+    const m = Math.floor(t / 60);
+    const s = Math.floor(t % 60).toString().padStart(2, '0');
+    const dm = Math.floor(dur / 60);
+    const ds = Math.floor(dur % 60).toString().padStart(2, '0');
+    timerEl.textContent = `${m}:${s} / ${dm}:${ds}`;
+    // Switch acts
+    for (let i = actTimes.length - 1; i >= 0; i--) {
+      if (t >= actTimes[i]) { goToAct(i); break; }
+    }
+  });
+
+  audio.addEventListener('ended', () => {
+    isPlaying = false;
+    playIcon.style.display = '';
+    pauseIcon.style.display = 'none';
+    btnLabel.textContent = 'Play Again';
+    progressBar.style.width = '100%';
+  });
+
+  // Simulate without audio
+  let simInterval;
+  let simTime = 0;
+  function simulatePitch() {
+    simTime = 0;
+    simInterval = setInterval(() => {
+      simTime += 0.5;
+      if (simTime > 60) { clearInterval(simInterval); isPlaying = false; playIcon.style.display=''; pauseIcon.style.display='none'; btnLabel.textContent='Play Again'; return; }
+      progressBar.style.width = (simTime / 60 * 100) + '%';
+      const m = Math.floor(simTime / 60);
+      const s = Math.floor(simTime % 60).toString().padStart(2, '0');
+      timerEl.textContent = `${m}:${s} / 1:00`;
+      for (let i = actTimes.length - 1; i >= 0; i--) {
+        if (simTime >= actTimes[i]) { goToAct(i); break; }
+      }
+    }, 500);
+  }
+
+  function goToAct(n) {
+    if (n === currentAct) return;
+    currentAct = n;
+    document.querySelectorAll('.pitch-act').forEach((a, i) => a.classList.toggle('active', i === n));
+    document.querySelectorAll('.pdot').forEach((d, i) => d.classList.toggle('active', i === n));
+  }
+
+  function nextAct() {
+    if (currentAct < 4) goToAct(currentAct + 1);
+  }
+  function prevAct() {
+    if (currentAct > 0) goToAct(currentAct - 1);
+  }
+
+  // Dot click
+  document.querySelectorAll('.pdot').forEach(d => {
+    d.addEventListener('click', () => goToAct(parseInt(d.dataset.dot)));
+  });
+</script>
+
+<!-- VALUE CASES -->
+<section>
+  <div class="wrapper">
+    <div class="section-label fade-up">Proof of Value</div>
+    <h2 class="fade-up">Three situations.<br/><em>Three transformations.</em></h2>
+    <div class="cases-grid">
+
+      <div class="case-card fade-up">
+        <div class="case-num">01 / Market Creation</div>
+        <div class="case-company">Delaware · Switzerland</div>
+        <div class="case-title">Zero to 43 M CHF in a new market</div>
+        <div class="case-body">No brand, no team, no pipeline. Designed the full go-to-market from legal setup to partner ecosystem (SAP, PwC, FHH). Defined priority verticals — luxury, manufacturing, life sciences. Built a C-suite outreach engine combining events, partnerships and targeted prospecting.</div>
+        <div class="case-result">43 M CHF pipeline · 4 closings · 12 months</div>
+      </div>
+
+      <div class="case-card fade-up" style="transition-delay:0.12s">
+        <div class="case-num">02 / Portfolio Acceleration</div>
+        <div class="case-company">Marvinpac Group · International</div>
+        <div class="case-title">€60 M portfolio, +33% in 5 years</div>
+        <div class="case-body">Inherited a mature portfolio with limited growth levers. Redesigned account segmentation, structured executive alignment programs, and opened 9 new international markets. Deployed a proprietary Customer Excellence Framework to protect and grow existing revenue.</div>
+        <div class="case-result">€14 M new revenue · 9 markets · NPS 9.6</div>
+      </div>
+
+      <div class="case-card fade-up" style="transition-delay:0.24s">
+        <div class="case-num">03 / Revenue Engine Build</div>
+        <div class="case-company">DO! L'Agence · Global</div>
+        <div class="case-title">10x revenue on global luxury accounts</div>
+        <div class="case-body">Scaled a boutique agency's key account function across 70+ countries in luxury, cosmetics and FMCG. Designed engagement frameworks, built C-level relationships with global brand directors, and delivered multi-channel campaigns that drove +20% client engagement year-over-year.</div>
+        <div class="case-result">×10 revenue · 70+ countries · +20% engagement</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCIES -->
+<section style="background: rgba(255,255,255,0.015); border-top: 1px solid rgba(196,153,58,0.08); border-bottom: 1px solid rgba(196,153,58,0.08);">
+  <div class="wrapper">
+    <div class="section-label fade-up">Core Competencies</div>
+    <h2 class="fade-up">What I bring<br/><em>to a CSO seat.</em></h2>
+    <div class="comp-grid">
+      <div class="fade-up">
+        <div class="comp-group-title">Commercial & Strategy</div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">Go-to-Market design & market creation from scratch</div></div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">Enterprise sales long-cycle (18–36 months)</div></div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">Multi-million Key Account Management</div></div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">Value-Based Selling & C-suite negotiation</div></div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">TAM-driven segmentation & demand generation</div></div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">ERP · Data · Cloud · AI positioning (business lens)</div></div>
+      </div>
+      <div class="fade-up" style="transition-delay:0.15s">
+        <div class="comp-group-title">Governance & Leadership</div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">Full P&L ownership — Sales & Marketing</div></div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">Pipeline governance & forecast discipline</div></div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">Executive dashboards & board reporting</div></div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">Cross-functional leadership: Sales · Mktg · Ops · R&D</div></div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">20+ FTE multicultural teams</div></div>
+        <div class="comp-item"><div class="comp-dot"></div><div class="comp-text">Cost optimization & procurement efficiency</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE TIMELINE -->
+<section id="experience">
+  <div class="wrapper">
+    <div class="section-label fade-up">Career</div>
+    <h2 class="fade-up">17 years.<br/><em>Three inflection points.</em></h2>
+    <div class="timeline">
+
+      <div class="tl-item fade-up">
+        <div class="tl-period">Apr 2025 — Present</div>
+        <div class="tl-company">Delaware</div>
+        <div class="tl-role">Sales Director & Board Member · Digital Transformation</div>
+        <div class="tl-body">Led the Swiss market launch of a global digital transformation firm — governance, legal, partner ecosystem and go-to-market strategy. Structured a 43 M CHF enterprise pipeline targeting luxury, manufacturing, life sciences and healthcare. Integrated ERP, data governance and AI use-case positioning into C-suite transformation discussions.</div>
+        <div class="tl-tags">
+          <span class="tag">ERP</span><span class="tag">Data & AI</span><span class="tag">Swiss Market</span><span class="tag">SAP Partnership</span><span class="tag">Board Member</span>
+        </div>
+      </div>
+
+      <div class="tl-item fade-up">
+        <div class="tl-period">Jul 2018 — May 2024</div>
+        <div class="tl-company">Marvinpac Group</div>
+        <div class="tl-role">Director, Customer Excellence & Strategic Accounts · €60 M Portfolio</div>
+        <div class="tl-body">Managed and grew a €60 M international portfolio across luxury and FMCG — Harry Winston, Audemars Piguet, Piaget among others. Delivered +33% portfolio growth and opened 9 new international markets. Led 20+ professionals across Sales, Marketing, R&D, Finance and Operations. Full P&L management with up to 25% cost optimization.</div>
+        <div class="tl-tags">
+          <span class="tag">€60 M P&L</span><span class="tag">Luxury & FMCG</span><span class="tag">9 New Markets</span><span class="tag">20+ FTEs</span><span class="tag">NPS 9.6</span>
+        </div>
+      </div>
+
+      <div class="tl-item fade-up">
+        <div class="tl-period">Apr 2008 — Jun 2018</div>
+        <div class="tl-company">DO! L'Agence</div>
+        <div class="tl-role">International Head of Key Accounts · 70+ Countries</div>
+        <div class="tl-body">Built and scaled the agency's global key account function across cosmetics, luxury and FMCG. Drove 10x revenue growth through high-value B2B relationships and multi-channel B2B & B2C campaigns. Designed engagement frameworks deployed across 70+ countries, increasing client engagement by 20%.</div>
+        <div class="tl-tags">
+          <span class="tag">Global Luxury</span><span class="tag">FMCG</span><span class="tag">70+ Countries</span><span class="tag">×10 Revenue</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references" style="background: rgba(255,255,255,0.015); border-top: 1px solid rgba(196,153,58,0.08);">
+  <div class="wrapper">
+    <div class="section-label fade-up">References</div>
+    <h2 class="fade-up">What leaders say<br/><em>about working with me.</em></h2>
+    <div class="ref-grid">
+
+      <div class="ref-card fade-up">
+        <div class="ref-quote">"A highly structured and inspiring leader, Thomas aligns strategic vision with measurable execution. His ability to mobilize teams, engage demanding clients, and sustain growth across complex markets has been key to Marvinpac's international success."</div>
+        <div class="ref-name">Ludovic Hericher</div>
+        <div class="ref-title">CEO & Chairman, Marvinpac Group</div>
+      </div>
+
+      <div class="ref-card fade-up" style="transition-delay:0.12s">
+        <div class="ref-quote">"Thomas brings a unique blend of strategic thinking, operational excellence, and emotional intelligence. He quickly earns the confidence of executive boards by driving growth while preserving brand integrity and customer experience."</div>
+        <div class="ref-name">Olivier Salaun</div>
+        <div class="ref-title">CEO & Chairman</div>
+      </div>
+
+      <div class="ref-card fade-up" style="transition-delay:0.24s">
+        <div class="ref-quote">"He bridges strategy and execution seamlessly, combining analytical discipline with creativity. His capacity to translate market insights into actionable business plans makes him a rare executive capable of leading transformation with elegance and efficiency."</div>
+        <div class="ref-name">Marie-Alice Chappuis</div>
+        <div class="ref-title">CEO, Marcapar</div>
+      </div>
+
+      <div class="ref-card fade-up" style="transition-delay:0.36s">
+        <div class="ref-quote">"Mr. Verdier's exceptional creativity, leadership, and strategic acumen has consistently demonstrated his ability to develop and execute comprehensive visions aligned with overarching business objectives. His proficiency in strategic decision-making and cross-functional collaboration makes him an asset."</div>
+        <div class="ref-name">Matthieu Cousteau</div>
+        <div class="ref-title">CFO, Positrigo</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact">
+  <div class="wrapper">
+    <div class="section-label fade-up" style="justify-content:center; max-width:200px; margin: 0 auto 20px;">Let's Talk</div>
+    <h2 class="fade-up">Ready to build<br/><em>your next revenue engine?</em></h2>
+    <p class="fade-up">One conversation is enough to know if there's a fit. I'm available for a 20-minute call this week.</p>
+    <div class="fade-up" style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+      <a href="mailto:verdier.thomas@gmail.com" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        verdier.thomas@gmail.com
+      </a>
+      <a href="tel:+41796934524" class="btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.5 2 2 0 0 1 3.54 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l1.8-1.8a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +41 79 693 45 24
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="wrapper">
+  <footer>
+    <span>© 2025 Thomas Verdier — Chief Sales Officer</span>
+    <span>St-Légier, Switzerland · <a href="https://linkedin.com/in/verdierthomas" target="_blank">LinkedIn</a></span>
+  </footer>
+</div>
+
+<script>
+  // Intersection Observer for fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Nav active state
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
